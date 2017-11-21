@@ -5,29 +5,35 @@
  */
 package DTO;
 
+import java.sql.Date;
+
 /**
  *
  * @author *
  */
 public class PedidoDTO {
-    public String idPedido;
+//    public String idPedido;
     public String orden;
     public ClienteDTO cliente;
     public RepartidorDTO repartidor;
+    public Date fecha;
+    public boolean entregado=false;
+    public String telefono;
     
     public PedidoDTO() {
         
     }
     
-    public PedidoDTO(String orden, ClienteDTO cliente, RepartidorDTO repartidor) {
+    public PedidoDTO(String orden, ClienteDTO cliente, Date fecha, String Telefono) {
         this.orden = orden;
         this.cliente = cliente;
-        this.repartidor = repartidor;
+        this.fecha=fecha;
+        this.telefono=telefono;
     }
 
-    public String getIdPedido() {
-        return idPedido;
-    }
+//    public String getIdPedido() {
+//        return idPedido;
+//    }
 
     public String getOrden() {
         return orden;
@@ -51,6 +57,30 @@ public class PedidoDTO {
 
     public void setRepartidor(RepartidorDTO repartidor) {
         this.repartidor = repartidor;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public boolean isEntregado() {
+        return entregado;
+    }
+
+    public void setEntregado(boolean entregado) {
+        this.entregado = entregado;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     @Override

@@ -84,7 +84,7 @@ public class Control {
 
     public void crear(PedidoDTO pedido) {
         persistencia = new Persistencia();
-        PedidoDTO pdido = new PedidoDTO(pedido.getOrden(), pedido.getCliente(), pedido.getRepartidor());
+ //       PedidoDTO pdido = new PedidoDTO(pedido.getOrden(), pedido.getCliente(), pedido.getRepartidor());
     }
 
     public void buscar(PedidoDTO pedido) {
