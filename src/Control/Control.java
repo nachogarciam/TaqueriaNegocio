@@ -84,13 +84,28 @@ public class Control {
 
     public void crear(PedidoDTO pedido) {
         persistencia = new Persistencia();
- //       PedidoDTO pdido = new PedidoDTO(pedido.getOrden(), pedido.getCliente(), pedido.getRepartidor());
+//       PedidoDTO pdido = new PedidoDTO(pedido.getOrden(), pedido.getCliente(), pedido.getRepartidor());
+        try {
+            persistencia.crear((PedidoDTO) pedido);
+        } catch (SQLException ex) {
+            Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void buscar(PedidoDTO pedido) {
         persistencia = new Persistencia();
     }
-
+    
+     public ArrayList<PedidoDTO> listarPedidos() {
+        persistencia = new Persistencia();
+        try {
+            return  persistencia.listarPedidos();
+        } catch (SQLException ex) {
+            Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+            
     public void actualizar(PedidoDTO pedido) {
         persistencia = new Persistencia();
     }
