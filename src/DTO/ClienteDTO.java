@@ -26,6 +26,11 @@ public class ClienteDTO extends PersonaDTO {
         this.direccion = direccion;
     }
 
+    public ClienteDTO(String idCliente, String nombre, String telefono, String direccion) {
+        super(nombre, telefono);
+        this.idCliente=idCliente;
+        this.direccion = direccion;
+    }
     public ClienteDTO(String nombre, String telefono, String direccion, int historialPedidos) {
         super(nombre, telefono);
         this.direccion = direccion;
