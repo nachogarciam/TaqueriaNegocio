@@ -17,6 +17,7 @@ import PersistenciaMapa.PersistenciaMapa;
 import java.awt.List;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -96,10 +97,30 @@ public class Control {
         persistencia = new Persistencia();
     }
     
-     public ArrayList<PedidoDTO> listarPedidos() {
+    public ArrayList<PedidoDTO> listarPedidos() {
         persistencia = new Persistencia();
         try {
             return  persistencia.listarPedidos();
+        } catch (SQLException ex) {
+            Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public ArrayList<PedidoDTO> listarPedidosPeriodo(Date fecha1, Date fecha2){
+        persistencia = new Persistencia();
+        ArrayList<PedidoDTO> lista=new ArrayList<PedidoDTO>();
+        ArrayList<PedidoDTO> listaPeriodo=new ArrayList<PedidoDTO>();
+        try {
+            lista.addAll(persistencia.listarPedidos());
+            
+            for (PedidoDTO pedidoDTO : lista) {
+                Date fecha=new Date(pedidoDTO.getFecha().getTime());
+                if(fecha.after(fecha1)&&fecha.before(fecha2)){
+                    listaPeriodo.add(pedidoDTO);
+                }
+            }
+            return  listaPeriodo;
         } catch (SQLException ex) {
             Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
         }
