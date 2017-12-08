@@ -5,6 +5,7 @@
  */
 package DTO;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -18,7 +19,8 @@ public int id;
     public double total = 0.0;
     public ClienteDTO cliente;
     public RepartidorDTO repartidor;
-    public Date fecha;
+//    public Date fecha;
+    Timestamp fecha;
     public boolean entregado = false;
     public String telefono;
     int tacosH;
@@ -38,7 +40,7 @@ public int id;
 
     }
 
-    public PedidoDTO(String orden, ClienteDTO cliente, Date fecha, String Telefono) {
+    public PedidoDTO(String orden, ClienteDTO cliente, Timestamp fecha, String Telefono) {
         this.orden = orden;
         this.cliente = cliente;
         this.fecha = fecha;
@@ -72,11 +74,11 @@ public int id;
         this.repartidor = repartidor;
     }
 
-    public Date getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 
