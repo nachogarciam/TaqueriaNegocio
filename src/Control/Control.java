@@ -137,6 +137,11 @@ public class Control {
 
     public void actualizar(PedidoDTO pedido) {
         persistencia = new Persistencia();
+         try {
+            persistencia.actualiza(pedido);
+        } catch (SQLException ex) {
+            Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 

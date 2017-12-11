@@ -336,6 +336,7 @@ public int id;
 
     
     public void armarPedido() {
+        orden=""; 
         if (tacosH != 0) {
             orden += "Tacos Harina: " + tacosH + "\n";
             total += tacosH * 25;
