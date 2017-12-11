@@ -7,6 +7,7 @@ package DTO;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -23,18 +24,29 @@ public int id;
     Timestamp fecha;
     public boolean entregado = false;
     public String telefono;
-    int tacosH;
-    int tacosM;
-    int lorenzas;
-    int toritos;
-    int papaC;
-    int papaSC;
-    int quesadillasG;
-    int quesadillasCH;
-    int gorditas;
-    int bebidas;
-    int bebidasLitro;
-    int postres;
+    int tacosH=0;
+    int tacosM=0;
+    int lorenzas=0;
+    int toritos=0;
+    int papaC=0;
+    int papaSC=0;
+    int quesadillasG=0;
+    int quesadillasCH=0;
+    int gorditas=0;
+    int bebidas=0;
+    int bebidasLitro=0;
+    int postres=0;
+    
+    String NotasTacos="";
+    String NotasLorenzas="";
+    String NotasToritos="";
+    String NotasPapa="";
+    String NotasQuesadilla="";
+    String NotasGordita="";
+    String NotasBebidas="";
+    String NotasBebidasLitro="";
+    String NotasPostres="";
+    
 
     public PedidoDTO() {
 
@@ -45,11 +57,55 @@ public int id;
         this.cliente = cliente;
         this.fecha = fecha;
         this.telefono = telefono;
+        pasarOrden(orden);
     }
     public PedidoDTO(String telefono){
         this.telefono=telefono;
     }
 
+    public void pasarOrden(String orden){
+        StringTokenizer st=new StringTokenizer(orden);
+        while(st.hasMoreTokens()){
+            String token=st.nextToken();
+            if(token.equals("Harina:")){
+                setTacosH(Integer.parseInt(st.nextToken()));
+            }
+            if(token.equals("Maiz:")){
+                setTacosM(Integer.parseInt(st.nextToken()));
+            }
+            if(token.equals("Lorenzas:")){
+                setLorenzas(Integer.parseInt(st.nextToken()));
+            }
+            if(token.equals("Toritos:")){
+                setToritos(Integer.parseInt(st.nextToken()));
+            }
+            if(token.equals("Papas con Carne:")){
+                setPapaC(Integer.parseInt(st.nextToken()));
+            }
+            if(token.equals("Papas sin Carne:")){
+                setPapaSC(Integer.parseInt(st.nextToken()));
+            }
+            if(token.equals("Quesadillas Grandes:")){
+                setQuesadillasG(Integer.parseInt(st.nextToken()));
+            }
+            if(token.equals("Quesadillas Chicas:")){
+                setQuesadillasCH(Integer.parseInt(st.nextToken()));
+            }
+            if(token.equals("Gorditas:")){
+                setGorditas(Integer.parseInt(st.nextToken()));
+            }
+            if(token.equals("Bebidas:")){
+                setBebidas(Integer.parseInt(st.nextToken()));
+            }
+            if(token.equals("Bebidas de Litro:")){
+                setBebidasLitro(Integer.parseInt(st.nextToken()));
+            }
+            if(token.equals("Postres:")){
+                setPostres(Integer.parseInt(st.nextToken()));
+            }
+            
+        }
+    }
 //    public String getIdPedido() {
 //        return idPedido;
 //    }
@@ -204,6 +260,78 @@ public int id;
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public String getNotasTacos() {
+        return NotasTacos;
+    }
+
+    public void setNotasTacos(String NotasTacos) {
+        this.NotasTacos = NotasTacos;
+    }
+
+    public String getNotasLorenzas() {
+        return NotasLorenzas;
+    }
+
+    public void setNotasLorenzas(String NotasLorenzas) {
+        this.NotasLorenzas = NotasLorenzas;
+    }
+
+    public String getNotasToritos() {
+        return NotasToritos;
+    }
+
+    public void setNotasToritos(String NotasToritos) {
+        this.NotasToritos = NotasToritos;
+    }
+
+    public String getNotasPapa() {
+        return NotasPapa;
+    }
+
+    public void setNotasPapa(String NotasPapa) {
+        this.NotasPapa = NotasPapa;
+    }
+
+    public String getNotasQuesadilla() {
+        return NotasQuesadilla;
+    }
+
+    public void setNotasQuesadilla(String NotasQuesadilla) {
+        this.NotasQuesadilla = NotasQuesadilla;
+    }
+
+    public String getNotasGordita() {
+        return NotasGordita;
+    }
+
+    public void setNotasGordita(String NotasGordita) {
+        this.NotasGordita = NotasGordita;
+    }
+
+    public String getNotasBebidas() {
+        return NotasBebidas;
+    }
+
+    public void setNotasBebidas(String NotasBebidas) {
+        this.NotasBebidas = NotasBebidas;
+    }
+
+    public String getNotasBebidasLitro() {
+        return NotasBebidasLitro;
+    }
+
+    public void setNotasBebidasLitro(String NotasBebidasLitro) {
+        this.NotasBebidasLitro = NotasBebidasLitro;
+    }
+
+    public String getNotasPostres() {
+        return NotasPostres;
+    }
+
+    public void setNotasPostres(String NotasPostres) {
+        this.NotasPostres = NotasPostres;
     }
 
     
