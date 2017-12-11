@@ -13,14 +13,12 @@ import Interfaz.IPersistencia;
 import Persistencia.Persistencia;
 import PersistenciaMapa.PersistenciaMapa;
 
-
 import java.awt.List;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 /**
  *
@@ -29,8 +27,7 @@ import java.util.logging.Logger;
 public class Control {
 
     IPersistencia persistencia;
-    PersistenciaMapa map=new PersistenciaMapa();
-  
+    PersistenciaMapa map = new PersistenciaMapa();
 
     public void crear(PersonaDTO dto) {
         persistencia = new Persistencia();
@@ -72,7 +69,7 @@ public class Control {
     public ArrayList<ClienteDTO> listarClientes() {
         persistencia = new Persistencia();
         try {
-            return  persistencia.listarClientes();
+            return persistencia.listarClientes();
         } catch (SQLException ex) {
             Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -93,55 +90,70 @@ public class Control {
         }
     }
 
-    public void buscar(PedidoDTO pedido) {
+    public PedidoDTO buscar(PedidoDTO pedido) {
         persistencia = new Persistencia();
+
+        try {
+            return persistencia.leer(pedido);
+        } catch (SQLException ex) {
+            Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
-    
+
     public ArrayList<PedidoDTO> listarPedidos() {
         persistencia = new Persistencia();
         try {
-            return  persistencia.listarPedidos();
+            return persistencia.listarPedidos();
         } catch (SQLException ex) {
             Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-   
-    
-    public ArrayList<PedidoDTO> listarPedidosPeriodo(Date fecha1, Date fecha2){
+
+    public ArrayList<PedidoDTO> listarPedidosPeriodo(Date fecha1, Date fecha2) {
         persistencia = new Persistencia();
-        ArrayList<PedidoDTO> lista=new ArrayList<PedidoDTO>();
-        ArrayList<PedidoDTO> listaPeriodo=new ArrayList<PedidoDTO>();
+
+        fecha2.setHours(23);
+        fecha2.setMinutes(59);
+        fecha2.setSeconds(59);
+        ArrayList<PedidoDTO> lista = new ArrayList<PedidoDTO>();
+        ArrayList<PedidoDTO> listaPeriodo = new ArrayList<PedidoDTO>();
         try {
             lista.addAll(persistencia.listarPedidos());
-            
+
             for (PedidoDTO pedidoDTO : lista) {
-                Date fecha=new Date(pedidoDTO.getFecha().getTime());
-                if(fecha.after(fecha1)&&fecha.before(fecha2)){
+                Date fecha = new Date(pedidoDTO.getFecha().getTime());
+                if (fecha.after(fecha1) && fecha.before(fecha2)) {
                     listaPeriodo.add(pedidoDTO);
                 }
             }
-            return  listaPeriodo;
+            return listaPeriodo;
         } catch (SQLException ex) {
             Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-            
+
     public void actualizar(PedidoDTO pedido) {
         persistencia = new Persistencia();
+        
     }
 
     public void eliminar(PedidoDTO pedido) {
         persistencia = new Persistencia();
+        try {
+            persistencia.elimina(pedido);
+        } catch (SQLException ex) {
+            Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 //    public List listarPedidos(Lapso????) {
 //        
 //    }
-
-    public void ConsultarUbicacion(String[] args, String direccion){
-     map.ConsultarUbicacion(args, direccion);
+    public void ConsultarUbicacion(String[] args, String direccion) {
+        map.ConsultarUbicacion(args, direccion);
     }
 
 }

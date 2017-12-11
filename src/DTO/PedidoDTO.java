@@ -46,6 +46,9 @@ public int id;
         this.fecha = fecha;
         this.telefono = telefono;
     }
+    public PedidoDTO(String telefono){
+        this.telefono=telefono;
+    }
 
 //    public String getIdPedido() {
 //        return idPedido;
